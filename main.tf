@@ -118,20 +118,9 @@ resource "aws_iam_role_policy" "unity_policy" {
   policy = data.aws_iam_policy_document.unity_policy_definition.json
 }
 
-data "databricks_metastores" "all" {
-  provider = databricks.mws
-}
-
-locals {
-  target_metastore_id_array = [for metastore in keys(data.databricks_metastores.all.ids) : data.databricks_metastores.all.ids[metastore] if endswith(metastore, replace(var.region, "-", "_"))]
-  target_metastore_id       = try(local.target_metastore_id_array[0], "0")
-}
-
 
 resource "databricks_storage_credential" "storage_credential" {
-  provider      = databricks.mws
   name          = "sc-${var.project_name}"
-  metastore_id  = local.target_metastore_id
   owner         = "martinezgregory551@gmail.com"
   force_destroy = true
   aws_iam_role {
@@ -141,7 +130,6 @@ resource "databricks_storage_credential" "storage_credential" {
 }
 
 resource "databricks_external_location" "external_location" {
-  provider        = databricks.mws
   name            = "exloc-${var.project_name}"
   owner           = "martinezgregory551@gmail.com"
   url             = "s3://${module.aws_databricks_s3.bucket_name}"
@@ -150,7 +138,6 @@ resource "databricks_external_location" "external_location" {
 }
 
 resource "databricks_grants" "exloc_grants" {
-  provider          = databricks.mws
   external_location = databricks_external_location.external_location.id
   grant {
     principal  = "martinezgregory551@gmail.com"

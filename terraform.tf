@@ -14,5 +14,5 @@ provider "aws" {
 }
 
 provider "databricks" {
-  host       = var.databricks_workspace_url
+  host = var.databricks_workspace_url
 }

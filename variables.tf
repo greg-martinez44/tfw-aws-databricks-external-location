@@ -14,6 +14,11 @@ variable "databricks_account_id" {
   type        = string
 }
 
+variable "databricks_workspace_url" {
+  description = "The target workspace's URL."
+  type        = string
+}
+
 variable "project_name" {
   description = "The new project name."
   type        = string
