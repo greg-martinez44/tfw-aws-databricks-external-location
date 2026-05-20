@@ -1,5 +1,6 @@
 module "aws_s3_bucket" {
-  source = "./modules/aws-s3-bucket"
+  source  = "app.terraform.io/gm-practice-org/aws-s3/aws"
+  version = "1.1.1"
   providers = {
     aws = aws.target
   }
