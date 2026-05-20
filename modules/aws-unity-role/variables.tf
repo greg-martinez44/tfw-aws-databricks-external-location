@@ -12,3 +12,8 @@ variable "bucket_arn" {
   description = "The target bucket ARN."
   type        = string
 }
+
+variable "tags" {
+  description = "Tags to add to new resources."
+  type        = map(string)
+}

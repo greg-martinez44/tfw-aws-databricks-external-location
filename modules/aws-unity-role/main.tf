@@ -27,12 +27,13 @@ resource "aws_iam_role" "unity_catalog" {
         Condition = {
           StringEquals = {
             "AWS:PrincipalArn" = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.project_name}-storage-credential"
-            "sts:ExternalId" = var.databricks_account_id
+            "sts:ExternalId"   = var.databricks_account_id
           }
         }
       }
     ]
   })
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "unity_policy_definition" {

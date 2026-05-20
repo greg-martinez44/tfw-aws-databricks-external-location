@@ -3,7 +3,7 @@ terraform {
     organization = "gm-practice-org"
     workspaces {
       project = "AWS"
-      name    = "demo-wksp-external-location"
+      name    = "demo-project-2-external-location"
     }
   }
 }

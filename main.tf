@@ -16,6 +16,7 @@ module "aws_unity_role" {
   bucket_arn            = module.aws_s3_bucket.bucket_arn
   databricks_account_id = var.databricks_account_id
   project_name          = var.project_name
+  tags                  = var.tags
   depends_on            = [module.aws_s3_bucket]
 }
 
