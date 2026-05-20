@@ -10,7 +10,16 @@ terraform {
 }
 
 provider "aws" {
+  alias = "main"
+}
+
+provider "aws" {
+  alias  = "target"
   region = var.region
+  assume_role {
+    role_arn     = var.aws_role_arn
+    session_name = "tf_session"
+  }
 }
 
 provider "databricks" {

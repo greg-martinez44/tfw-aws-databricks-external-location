@@ -5,12 +5,12 @@ output "storage_credential_name" {
 
 output "storage_credential_aws_iam_role_arn" {
   description = "The ARN of the dedicated IAM role for Unity access."
-  value       = aws_iam_role.unity_catalog.arn
+  value       = module.aws_unity_role.role_arn
 }
 
 output "storage_credential_aws_iam_role_name" {
   description = "The name of the dedicated IAM role for Unity access."
-  value       = aws_iam_role.unity_catalog.name
+  value       = module.aws_unity_role.role_name
 }
 
 output "external_location_name" {

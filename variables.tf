@@ -1,3 +1,8 @@
+variable "aws_role_arn" {
+  description = "The role to authenticate with."
+  type        = string
+}
+
 variable "region" {
   description = "The AWS cloud region."
   type        = string
